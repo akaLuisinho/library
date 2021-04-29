@@ -1,4 +1,5 @@
 import express from 'express';
+
 import { addLoanerModel } from '../models/loanerModel'
 
 function showListLoaners(req: express.Request, res: express.Response) {
@@ -10,7 +11,6 @@ function showAddLoaner(req: express.Request, res: express.Response) {
 }
 
 function addLoaner(req: express.Request, res: express.Response) {
-    console.log(req.body);
     addLoanerModel(req.body)
     return res.redirect('/addLoaner')
 }   

@@ -5,14 +5,14 @@ const initDb = {
         const db = await dbconfig()
 
         await db.exec(`CREATE TABLE Loaners(
-            id uuid PRIMARY_KEY,
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
             name varchar(200),
             phone int(20),
             address varchar(300)
         )`)
 
         await db.exec(`CREATE TABLE Books(
-            id uuid PRIMARY_KEY,
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
             name varchar(200),
             author varchar(200),
             theme varchar(200),
@@ -20,9 +20,9 @@ const initDb = {
             )`)
 
         await db.exec(`CREATE TABLE Loan(
-            id uuid PRIMARY_KEY,
-            loanerId uuid,
-            bookId uuid,
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            loanerId int,
+            bookId int,
             expiration date,
             FOREIGN KEY (loanerId) REFERENCES Loaners(id),
             FOREIGN KEY (bookId) REFERENCES Books(id)
