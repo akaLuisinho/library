@@ -9,9 +9,9 @@ function showLogin(req: express.Request, res: express.Response) {
     return res.render('login');
 }
 
-function authenticate(req: express.Request, res: express.Response) {
+function login(req: express.Request, res: express.Response) {
     console.log(req.body);
     return res.redirect('/listBooks');
 }
 
-export { redirect, showLogin, authenticate };
+export { redirect, showLogin, login };
