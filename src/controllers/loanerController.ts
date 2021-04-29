@@ -1,13 +1,13 @@
 import express from 'express';
+import { addLoanerModel, getLoaners } from '../models/loanerModel'
 
-import { addLoanerModel } from '../models/loanerModel'
-
-function showListLoaners(req: express.Request, res: express.Response) {
-    res.render('listLoaners');
-}
+async function showListLoaners(req: express.Request, res: express.Response) {
+    const loanersList = await getLoaners()
+    return res.render('listLoaners',{ loanersList });
+} 
 
 function showAddLoaner(req: express.Request, res: express.Response) {
-    res.render('addLoaner');
+    return res.render('addLoaner');
 }
 
 function addLoaner(req: express.Request, res: express.Response) {

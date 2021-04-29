@@ -12,4 +12,14 @@ async function addLoaner(loanerData: any) {
     await db.close()
 }
 
-export { addLoaner as addLoanerModel }
+async function getLoaners() {
+    const db = await dbconfig()
+    
+    const loanersList = await db.all(`SELECT * FROM Loaners`)
+
+    await db.close()
+    
+    return loanersList
+}
+
+export { addLoaner as addLoanerModel, getLoaners }

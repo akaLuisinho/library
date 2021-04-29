@@ -12,4 +12,14 @@ async function addBook(bookData: any) {
     await db.close()
 }
 
-export { addBook as addBookModel }
+async function getBooks() {
+    const db = await dbconfig()
+    
+    const bookList = await db.all(`SELECT * FROM Books`)
+
+    await db.close()
+
+    return bookList
+}
+
+export { addBook as addBookModel, getBooks }

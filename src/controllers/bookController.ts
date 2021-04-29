@@ -1,17 +1,18 @@
 import express from 'express';
-import { addBookModel } from '../models/bookModel'
+import { addBookModel, getBooks } from '../models/bookModel'
 
-function showListBooks(req: express.Request, res: express.Response) {
-    res.render('listBooks');
+async function showListBooks(req: express.Request, res: express.Response) {
+    const bookList = await getBooks()
+    return res.render('listBooks', { bookList } );
 }
 
 function showAddBook(req: express.Request, res: express.Response) {
-    res.render('addBook');
+    return res.render('addBook');
 }
 
 function addBook(req: express.Request, res: express.Response) {
     addBookModel(req.body)
-    return res.redirect('/listBooks');
+    return res.redirect('/addBook');
 }
 
 export { showListBooks, showAddBook, addBook };
