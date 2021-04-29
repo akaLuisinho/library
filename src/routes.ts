@@ -1,24 +1,33 @@
 import express  from 'express';
-import {  redirect, showLogin, login } from './controllers/loginController';
-import { showListBooks, showAddBook } from './controllers/bookController';
-import { showListLoaners, showAddLoaner } from './controllers/loanerController';
+import { redirect, showLogin, login } from './controllers/loginController';
+import { showListBooks, showAddBook, addBook } from './controllers/bookController';
+import { showListLoaners, showAddLoaner, addLoaner } from './controllers/loanerController';
 import { showListLoanedBooks, showLoanBook }  from './controllers/loanController';
 
 const routes = express.Router();
 
-//login routes
+//LOGIN ROUTES
 routes.get('/', redirect);
 
+//authenticate login routes
 routes.get('/login', showLogin);
 routes.post('/login', login);
 
-//book routes
-routes.get('/listBooks', showListBooks);
-routes.get('/addBook', showAddBook);
 
-//loaner routes
+//BOOKS ROUTES
+routes.get('/listBooks', showListBooks);
+
+//addbook routes
+routes.get('/addBook', showAddBook);
+routes.post('/addBook', addBook);
+
+
+//LOANER ROUTES
 routes.get('/loaners', showListLoaners);
+
+//addloaner routes
 routes.get('/addLoaner', showAddLoaner);
+routes.post('/addLoaner', addLoaner)
 
 //loan routes
 routes.get('/loanedBooks', showListLoanedBooks);

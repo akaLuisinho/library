@@ -3,7 +3,7 @@ import { open } from 'sqlite'
 
 const dbconfig = async () => {
     return open({
-        filename: 'database.sqlite',
+        filename: 'database.db',
         driver: sqlite3.Database
     })
 }
