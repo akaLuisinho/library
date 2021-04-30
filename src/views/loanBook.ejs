@@ -7,6 +7,21 @@
     <title>Document</title>
 </head>
 <body>
-    loanBooks
+    <form method="post" action="/loanBook">
+        <label>Nome do Livro: </label>
+        <select name="bookSelector">
+            <% books.forEach((book) => { %>
+                <option><%= book.name %> </option>
+            <% }) %> 
+        </select>
+        <br>
+        <label>Nome do Locatário:</label>
+        <select name="loanerSelector">
+            <% loaners.forEach((loaner) => { %>
+                <option><%= loaner.name %> </option>
+            <% }) %> 
+        </select>
+        <button type="submit">Alocar</button>
+    </form>
 </body>
 </html>

@@ -2,13 +2,14 @@ import express  from 'express';
 
 import { showListBooks, showAddBook, addBook } from './controllers/bookController';
 import { showListLoaners, showAddLoaner, addLoaner } from './controllers/loanerController';
-import { showListLoanedBooks, showLoanBook }  from './controllers/loanController';
+import { showListLoanedBooks, showLoanBook, loanBook }  from './controllers/loanController';
 
 const routes = express.Router();
 
 routes.get('/', (req, res) => {
     res.redirect('/listBooks')
 })
+
 //BOOKS ROUTES
 routes.get('/listBooks', showListBooks);
 
@@ -27,5 +28,6 @@ routes.post('/addLoaner', addLoaner)
 //loan routes
 routes.get('/loanedBooks', showListLoanedBooks);
 routes.get('/loanBook', showLoanBook);
+routes.post('/loanBook', loanBook);
 
 export { routes };

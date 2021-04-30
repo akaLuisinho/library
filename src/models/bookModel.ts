@@ -1,5 +1,4 @@
 import { dbconfig } from '../db/config'
-import { v4 as uuid } from 'uuid';
 
 async function addBook(bookData: any) {
     const db = await dbconfig()
