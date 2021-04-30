@@ -11,14 +11,14 @@
         <label>Nome do Livro: </label>
         <select name="bookSelector">
             <% books.forEach((book) => { %>
-                <option><%= book.name %> </option>
+                <option><%= book.bookName %> </option>
             <% }) %> 
         </select>
         <br>
         <label>Nome do Locatário:</label>
         <select name="loanerSelector">
             <% loaners.forEach((loaner) => { %>
-                <option><%= loaner.name %> </option>
+                <option><%= loaner.loanerName %> </option>
             <% }) %> 
         </select>
         <button type="submit">Alocar</button>

@@ -4,8 +4,8 @@ async function addLoaner(loanerData: any) {
     const db = await dbconfig()
     
     await db.exec(`
-    INSERT INTO loaners(name, phone, address) 
-    VALUES ("${loanerData.loanerName}", ${loanerData.loanerPhone}, "${loanerData.loanerAddress}")
+    INSERT INTO loaners(loanerName, phone, address, loaning) 
+    VALUES ("${loanerData.loanerName}", ${loanerData.loanerPhone}, "${loanerData.loanerAddress}", false)
     `)
 
     await db.close()
@@ -14,7 +14,7 @@ async function addLoaner(loanerData: any) {
 async function getLoaners() {
     const db = await dbconfig()
     
-    const loanersList = await db.all(`SELECT * FROM Loaners`)
+    const loanersList = await db.all(`SELECT * FROM Loaners WHERE loaning = false`)
 
     await db.close()
     

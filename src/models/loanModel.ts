@@ -8,28 +8,37 @@ async function getLoans() {
     for(const loan of loans) {
         const loaner = await db.get(`SELECT * FROM Loaners WHERE id = ${loan.loanerId}`)
         const book = await db.get(`SELECT * FROM Books WHERE id = ${loan.bookId}`)
-        const expiration = await db.get(`SELECT expiration FROM Loan WHERE loanerId = ${loan.loanerId}`)
-        pairLoanerBook.push(loaner, book, expiration)
+        const calculateExpiration = Math.floor((loan.loanDate - Date.now()) / (1000*60*60*24))
+        const loanData = {
+            ...loan,
+            loanDate: calculateExpiration,
+            ...loaner,
+            ...book
+        }
+        pairLoanerBook.push(loanData)
     }
 
     await db.close()    
-    
+
     return pairLoanerBook
 }
 async function addLoan(book: string, loaner: string) {
 
     const month = 2629800000
-    const expiration = Date.now() + month
+    const loanDate = Date.now() + month
 
     const db = await dbconfig()
 
-    const bookData = await db.get(`SELECT * FROM Books WHERE name = "${book}"`)
-    const loanerData = await db.get(`SELECT * FROM Loaners WHERE name = "${loaner}"`)
+    const bookData = await db.get(`SELECT * FROM Books WHERE bookName = "${book}"`)
+    const loanerData = await db.get(`SELECT * FROM Loaners WHERE loanerName = "${loaner}"`)
     
     await db.exec(`
-    INSERT INTO Loan(loanerId, bookId, expiration)
-    VALUES (${loanerData.id}, ${bookData.id}, "${expiration}")
+    INSERT INTO Loan(loanerId, bookId, loanDate)
+    VALUES (${loanerData.id}, ${bookData.id}, "${loanDate}")
     `)
+
+    await db.exec(`UPDATE Loaners SET loaning = true WHERE id = ${loanerData.id}`)
+    await db.exec(`UPDATE Books SET loaned = true WHERE id = ${bookData.id}`)
 
     await db.close()
 }

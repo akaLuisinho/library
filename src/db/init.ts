@@ -6,7 +6,7 @@ const initDb = {
 
         await db.exec(`CREATE TABLE Loaners(
             id INTEGER PRIMARY KEY AUTOINCREMENT,
-            name varchar(200),
+            loanerName varchar(200),
             phone int(20),
             address varchar(300),
             loaning boolean
@@ -14,7 +14,7 @@ const initDb = {
 
         await db.exec(`CREATE TABLE Books(
             id INTEGER PRIMARY KEY AUTOINCREMENT,
-            name varchar(200),
+            bookName varchar(200),
             author varchar(200),
             theme varchar(200),
             year int(4),
@@ -25,7 +25,7 @@ const initDb = {
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             loanerId int,
             bookId int,
-            expiration date,
+            loanDate date,
             FOREIGN KEY (loanerId) REFERENCES Loaners(id),
             FOREIGN KEY (bookId) REFERENCES Books(id)
         )`)
