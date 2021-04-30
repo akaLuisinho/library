@@ -27,6 +27,8 @@ routes.post('/addLoaner', addLoaner)
 
 //loan routes
 routes.get('/loanedBooks', showListLoanedBooks);
+
+//addloan routes
 routes.get('/loanBook', showLoanBook);
 routes.post('/loanBook', loanBook);
 

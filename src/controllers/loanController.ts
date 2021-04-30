@@ -1,10 +1,11 @@
 import express from 'express';
 import { getBooks } from '../models/bookModel'
 import { getLoaners } from '../models/loanerModel'
-import { addLoan } from '../models/loanModel'
+import { getLoans, addLoan } from '../models/loanModel'
 
-function showListLoanedBooks(req: express.Request, res: express.Response) {
-    return res.render('listLoanedBooks');
+async function showListLoanedBooks(req: express.Request, res: express.Response) {
+    const pairLoanerBook = await getLoans()
+    return res.render('listLoanedBooks', { pairLoanerBook });
 }
 
 async function showLoanBook(req: express.Request, res: express.Response) {
