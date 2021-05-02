@@ -6,24 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<body>
-    <a href="/addBook">Adicionar Livro</a><br>
-    <a href="/addLoaner">Adicionar Leitor</a><br>
-    <a href="/listBooks">Listar Livros</a><br>
-    <a href="/loanedBooks">Listar Livros Emprestados</a><br>
-    <a href="/loaners">Listar Leitores</a><br>
-    <a href="/loanBook">Emprestar Livro</a><br>
-        
-    <% loanersList.forEach((loaner) => { %> 
-        Nome do Leitor: <%= loaner.loanerName %> 
-        <br>
-        Telefone do Leitor: <%= loaner.phone %> 
-        <br>
-        Endereço do Leitor: <%= loaner.address %> 
-        <form method="get" action="/loaners/edit/<%= loaner.id %>">
-            <button type="submit">Alterar Leitor</button>
-        </form>
-        <hr>
-    <% }) %> 
-</body>
+    <body>
+        <a href="/addBook">Adicionar Livro</a><br>
+        <a href="/addLoaner">Adicionar Leitor</a><br>
+        <a href="/listBooks">Listar Livros</a><br>
+        <a href="/loanedBooks">Listar Livros Emprestados</a><br>
+        <a href="/loaners">Listar Leitores</a><br>
+        <a href="/loanBook">Emprestar Livro</a><br>
+            
+        <% loanersList.forEach((loaner) => { %> 
+            Nome do Leitor: <%= loaner.loanerName %> 
+            <br>
+            Telefone do Leitor: <%= loaner.phone %> 
+            <br>
+            Endereço do Leitor: <%= loaner.address %> 
+            <form method="get" action="/loaners/edit/<%= loaner.id %>">
+                <button type="submit">Alterar Leitor</button>
+            </form>
+            
+            <form method="post" action="/loaners/delete/<%= loaner.id %>">
+                <button type="submit">Deletar Leitor</button>
+            </form>
+            <hr>
+        <% }) %> 
+    </body>
 </html>

@@ -19,6 +19,13 @@
         Nome do Autor: <%= book.author %><br> 
         Tema do Livro: <%= book.theme %><br> 
         Ano de Lançamento: <%= book.year %><br>
+        <form method="get" action="/listBooks/edit/<%= book.id %>">
+            <button type="submit">Alterar Livro</button>
+        </form>
+            
+        <form method="post" action="/listBooks/delete/<%= book.id %>">
+            <button type="submit">Deletar Livro</button>
+        </form>
         <hr>
     <% }) %> 
 </body>

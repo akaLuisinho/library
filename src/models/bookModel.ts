@@ -1,7 +1,16 @@
 import { dbconfig } from '../db/config'
 
-async function addBook(bookData: any) {
+async function getBooks() {
+    const db = await dbconfig()
+    
+    const bookList = await db.all(`SELECT * FROM Books WHERE loaned = false`)
 
+    await db.close()
+
+    return bookList 
+}
+
+async function addBook(bookData: any) {
     const db = await dbconfig()
     
     await db.exec(`
@@ -10,19 +19,38 @@ async function addBook(bookData: any) {
     `)
 
     await db.close()
-
 }
 
-async function getBooks() {
-
+async function getBookById(id: number) {
     const db = await dbconfig()
     
-    const bookList = await db.all(`SELECT * FROM Books WHERE loaned = false`)
+    const book = await db.get(`SELECT * FROM Books WHERE id = ${id}`)
 
     await db.close()
 
-    return bookList
-    
+    return book
 }
 
-export { addBook as addBookModel, getBooks }
+async function updateBook(id: number, newData: any) {
+    const db = await dbconfig()
+    
+    await db.exec(`
+    UPDATE Books SET
+    bookName = "${newData.bookName}",
+    author = "${newData.author}",
+    theme = "${newData.theme}", 
+    year = ${newData.year}
+    WHERE id = ${id}
+    `)
+
+    await db.close()
+}
+
+async function deleteBook(id: number) {
+    const db = await dbconfig()
+    
+    await db.exec(`DELETE FROM Books WHERE id = ${id}`)
+
+    await db.close()
+}
+export { addBook as addBookModel, getBooks, getBookById, updateBook, deleteBook as deleteBookModel }

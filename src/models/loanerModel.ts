@@ -1,7 +1,6 @@
 import { dbconfig } from '../db/config'
 
 async function addLoaner(loanerData: any) {
-
     const db = await dbconfig()
     
     await db.exec(`
@@ -10,11 +9,9 @@ async function addLoaner(loanerData: any) {
     `)
 
     await db.close()
-    
 }
 
 async function getLoaners() {
-
     const db = await dbconfig()
     
     const loanersList = await db.all(`SELECT * FROM Loaners WHERE loaning = false`)
@@ -22,7 +19,6 @@ async function getLoaners() {
     await db.close()
     
     return loanersList
-
 }
 
 async function getLoanerById(id: number) {
@@ -47,6 +43,13 @@ async function updateLoaner(id: number, newData: any) {
     `)
 
     await db.close()
-
 }
- export { addLoaner as addLoanerModel, getLoaners, getLoanerById, updateLoaner }
+
+async function deleteLoaner(id: number) {
+    const db = await dbconfig()
+
+    await db.exec(`DELETE FROM Loaners WHERE id = ${id}`)
+    
+    await db.close()
+}
+ export { addLoaner as addLoanerModel, deleteLoaner as deleteLoanerModel, getLoaners, getLoanerById, updateLoaner }
