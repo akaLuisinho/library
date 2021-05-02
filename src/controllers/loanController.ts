@@ -5,7 +5,6 @@ import { getLoans, addLoan } from '../models/loanModel'
 
 async function showListLoanedBooks(req: express.Request, res: express.Response) {
     const pairLoanerBook = await getLoans()
-    console.log(pairLoanerBook);
     return res.render('listLoanedBooks', { pairLoanerBook });
 }
 

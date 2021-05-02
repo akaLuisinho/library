@@ -3,7 +3,6 @@ import { addBookModel, getBooks } from '../models/bookModel'
 
 async function showListBooks(req: express.Request, res: express.Response) {
     const bookList = await getBooks()
-    console.log(bookList);
     return res.render('listBooks', { bookList } );
 }
 

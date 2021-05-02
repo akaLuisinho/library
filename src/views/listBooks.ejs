@@ -7,19 +7,18 @@
     <title>Página Inicial</title>
 </head>
 <body>
-    <a href="/addBook">Add Book</a><br>
-    <a href="/addLoaner">Add Loaner</a><br>
-    <a href="/listBooks">List Books</a><br>
-    <a href="/loanedBooks">List Loaned Books</a><br>
-    <a href="/loaners">List Loaners</a><br>
-    <a href="/loanBook">Loan book</a><br>
-    <a href="/logout">Logout</a><br><p><br>
+    <a href="/addBook">Adicionar Livro</a><br>
+    <a href="/addLoaner">Adicionar Leitor</a><br>
+    <a href="/listBooks">Listar Livros</a><br>
+    <a href="/loanedBooks">Listar Livros Emprestados</a><br>
+    <a href="/loaners">Listar Leitores</a><br>
+    <a href="/loanBook">Emprestar Livro</a><br>
 
     <% bookList.forEach((book) => { %> 
-        <%= book.bookName %><br> 
-        <%= book.author %><br> 
-        <%= book.theme %><br> 
-        <%= book.year %><br><p><br> 
+        Nome do Livro: <%= book.bookName %><br> 
+        Nome do Autor: <%= book.author %><br> 
+        Tema do Livro: <%= book.theme %><br> 
+        Ano de Lançamento: <%= book.year %><br><p><br> 
     <% }) %> 
 </body>
 </html>

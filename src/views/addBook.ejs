@@ -7,25 +7,24 @@
     <title>Document</title>
 </head>
 <body>
-    <a href="/addBook">Add Book</a><br>
-    <a href="/addLoaner">Add Loaner</a><br>
-    <a href="/listBooks">List Books</a><br>
-    <a href="/loanedBooks">List Loaned Books</a><br>
-    <a href="/loaners">List Loaners</a><br>
-    <a href="/loanBook">Loan book</a><br>
-    <a href="/logout">Logout</a><br><p><br>
-        
+    <a href="/addBook">Adicionar Livro</a><br>
+    <a href="/addLoaner">Adicionar Leitor</a><br>
+    <a href="/listBooks">Listar Livros</a><br>
+    <a href="/loanedBooks">Listar Livros Emprestados</a><br>
+    <a href="/loaners">Listar Leitores</a><br>
+    <a href="/loanBook">Emprestar Livro</a><br>
+   
     <form method="post" action="/addBook">
-        <label>Name</label>
+        <label>Nome do Livro:</label>
         <input type="text" name="bookName">
         <br>
-        <label>Author</label>
+        <label>Nome do Autor:</label>
         <input type="text" name="bookAuthor">
         <br>
-        <label>Theme</label>
+        <label>Tema do Livro</label>
         <input type="text" name="bookTheme">
         <br>            
-        <label>Year</label>
+        <label>Ano de Lançamento</label>
         <input type="text" name="bookYear">
         <br>
         <button type="submit">Cadastrar Livro</button>
