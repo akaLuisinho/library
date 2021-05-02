@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method="post" action="/loaners/edit/<%= loaner.id %> ">
+        <input type="text" name="loanerName" value="<%= loaner.loanerName %>"></input><br>
+        <input type="text" name="address" value="<%= loaner.address %>"></input><br>
+        <input type="text" name="phone" value="<%= loaner.phone %>"></input><br>
+        <button type="submit">Atualizar</button>
+    </form>
+</body>
+</html>

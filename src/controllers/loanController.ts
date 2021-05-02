@@ -5,6 +5,7 @@ import { getLoans, addLoan, returnBook } from '../models/loanModel'
 
 async function showListLoanedBooks(req: express.Request, res: express.Response) {
     const pairLoanerBook = await getLoans()
+
     return res.render('listLoanedBooks', { pairLoanerBook });
 }
 
@@ -19,7 +20,7 @@ function loanBook(req: express.Request, res: express.Response) {
     const { bookSelector, loanerSelector } = req.body
     addLoan(bookSelector, loanerSelector)
 
-    res.redirect('/listBooks')
+    return res.redirect('/listBooks')
 }
 
 function setReturned(req: express.Request, res: express.Response) {

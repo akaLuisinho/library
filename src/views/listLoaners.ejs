@@ -20,9 +20,10 @@
         Telefone do Leitor: <%= loaner.phone %> 
         <br>
         Endereço do Leitor: <%= loaner.address %> 
-        <br>
-        <p>
-        <br>
+        <form method="get" action="/loaners/edit/<%= loaner.id %>">
+            <button type="submit">Alterar Leitor</button>
+        </form>
+        <hr>
     <% }) %> 
 </body>
 </html>
