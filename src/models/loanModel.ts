@@ -11,13 +11,13 @@ async function getLoans() {
         const calculateExpiration = Math.floor((loan.loanDate - Date.now()) / (1000*60*60*24))
         const loanData = {
             ...loan,
-            loanDate: calculateExpiration,
             ...loaner,
-            ...book
+            ...book,
+            loanDate: calculateExpiration,
+            id: loan.id
         }
         pairLoanerBook.push(loanData)
     }
-
     await db.close()    
 
     return pairLoanerBook
@@ -42,4 +42,15 @@ async function addLoan(book: string, loaner: string) {
 
     await db.close()
 }
-export { getLoans, addLoan }
+
+async function returnBook(id: number) {
+    const db = await dbconfig()
+    const loanData = await db.get(`SELECT * FROM Loan WHERE id = ${id}`)
+    await db.exec(`UPDATE Books SET loaned = false WHERE id = ${loanData.bookId}`)
+    await db.exec(`UPDATE Loaners SET loaning = false WHERE id = ${loanData.loanerId}`)
+
+    await db.exec(`DELETE FROM Loan WHERE id = ${id}`)
+    await db.close()
+
+}
+export { getLoans, addLoan, returnBook }

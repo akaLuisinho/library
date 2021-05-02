@@ -15,9 +15,23 @@
     <a href="/loanBook">Emprestar Livro</a><br>
 
     <% pairLoanerBook.forEach((pair) => { %> 
-        Leitor: <%= pair.loanerName %><br>
-        Livro: <%= pair.bookName %><br>
-        Dias Até a Entrega: <%= pair.loanDate %><br><p><br>
+        Leitor
+        <br>
+        Nome: <%= pair.loanerName %><br>
+        Telefone: <%= pair.phone %><br>
+        Endereco: <%= pair.address %><br>
+        <br>
+
+        Livro 
+        Nome: <%= pair.bookName %><br>
+        Autor: <%= pair.author %><br>
+        Tema: <%= pair.theme %><br>
+        <br>
+        <%= pair.id %> 
+        Dias Até a Entrega: <%= pair.loanDate %>
+        <form action="/loanedBooks/<%= pair.id %> " method="post">
+            <button type="submit">Marcar como Devolvido</button><br><p><br>
+        </form>
     <% }) %> 
 </body>
 </html>
