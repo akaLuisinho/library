@@ -53,4 +53,4 @@ async function deleteBook(id: number) {
 
     await db.close()
 }
-export { addBook as addBookModel, getBooks, getBookById, updateBook, deleteBook as deleteBookModel }
+export { addBook as addBookModel, deleteBook as deleteBookModel, getBooks, getBookById, updateBook }

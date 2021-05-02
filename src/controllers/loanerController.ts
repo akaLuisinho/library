@@ -8,7 +8,6 @@ async function showListLoaners(req: express.Request, res: express.Response) {
 } 
 
 function showAddLoaner(req: express.Request, res: express.Response) {
-
     return res.render('addLoaner');
 }
 
@@ -20,7 +19,6 @@ function addLoaner(req: express.Request, res: express.Response) {
 
 async function showEditLoaner(req: express.Request, res: express.Response) {
     const id = Number(req.params.id)
-
     const loaner = await getLoanerById(id)
 
     return res.render('editLoaner', { loaner })
